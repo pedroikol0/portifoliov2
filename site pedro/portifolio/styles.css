@@ -1,0 +1,260 @@
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes fear {
+  0% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-5px, 5px);
+  }
+  20% {
+    transform: translate(5px, -5px);
+  }
+  30% {
+    transform: translate(-5px, -5px);
+  }
+  40% {
+    transform: translate(5px, 5px);
+  }
+  50% {
+    transform: translate(0);
+  }
+  60% {
+    transform: translate(-5px, 5px);
+  }
+  70% {
+    transform: translate(5px, -5px);
+  }
+  80% {
+    transform: translate(-5px, -5px);
+  }
+  90% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.5px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: #000;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover {
+    color: #999;
+    text-decoration: underline;
+}
+
+.navbar ul li a:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.wrapper {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100vh;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.section {
+    min-width: 100vw;
+    height: calc(100vh - 60px);
+    padding-top: 60px;
+    padding: 40px;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 2rem;
+    color: #fff;
+    flex-direction: column;
+    background-color: #000;
+}
+
+.section h1, .section h2 {
+    font-size: 2.5rem;
+    margin: 0 0 10px;
+    color: #f0f0f0;
+}
+
+.section p {
+    max-width: 600px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+}
+
+.section.home {
+    position: relative;
+}
+
+.home-links {
+    display: flex;
+    gap: 10px;
+}
+
+.link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.link-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.nav-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #666;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #fff;
+}
+
+.dot:hover {
+    background-color: #999;
+}
+
+.swipe-hint {
+    position: absolute;
+    bottom: 10px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #666;
+    animation: pulse 1.5s infinite;
+}
+
+@media (min-width: 768px) {
+    .swipe-hint {
+        display: none;
+    }
+
+    .nav-dots {
+        bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        font-size: 0.9rem;
+    }
+
+    .navbar ul {
+        background: #000;
+        padding: 10px;
+    }
+
+    .section h1, .section h2 {
+        font-size: 1.8rem;
+    }
+
+    .nav-dots {
+        bottom: 50px;
+    }
+
+    .ascii-bg {
+        font-size: 8px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+
+.ascii-bg {
+    position: fixed; /* Fixo na tela */
+    top: 20px;
+    right: 20px;
+    color: #444;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: pre;
+    opacity: 0.2;
+    pointer-events: none;
+    user-select: none;
+    z-index: 500; 
+    overflow: auto;
+}
+
