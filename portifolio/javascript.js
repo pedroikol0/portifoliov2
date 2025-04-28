@@ -9,6 +9,7 @@ const natureTrigger = document.getElementById("natureTrigger");
 const modal = document.getElementById("natureModal");
 const closeBtn = document.querySelector(".close");
 
+
 natureTrigger.addEventListener("click", () => {
   modal.style.display = "flex";
 });
@@ -102,44 +103,4 @@ document.addEventListener('keydown', (e) => {
   } else if (e.key === 'ArrowLeft') {
     wrapper.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
   }
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("suminagashi-canvas");
-  const ctx = canvas.getContext("2d");
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth * 0.3;
-    canvas.height = window.innerHeight;
-  }
-
-  function drawWavyLines() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "white";
-    ctx.lineWidth = 1;
-    const spacing = 10;
-    const amplitude = 20;
-    const frequency = 0.02;
-
-    for (let i = 0; i < canvas.width; i += spacing) {
-      ctx.beginPath();
-      for (let y = 0; y < canvas.height; y++) {
-        const offset = Math.sin(y * frequency + i * 0.1) * amplitude;
-        const x = i + offset;
-        if (y === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      }
-      ctx.stroke();
-    }
-  }
-
-  resizeCanvas();
-  drawWavyLines();
-  window.addEventListener("resize", () => {
-    resizeCanvas();
-    drawWavyLines();
-  });
 });

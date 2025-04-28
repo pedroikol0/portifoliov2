@@ -97,6 +97,18 @@
       transform: translateY(0) translateX(0);
     }
   }
+
+  @keyframes moveBackAndForth {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-200%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
   
 * {
     box-sizing: border-box;
@@ -138,16 +150,16 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
-    background-color: #232323;
-    z-index: 9998;
+    height: 4px;
+    background-color: #ccc;
+    z-index: 10000;
 }
 
 .progress-fill {
     height: 100%;
-    background-color: #fff;
+    background: linear-gradient(90deg, #00f260, #0575e6);
     width: 0;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease;
 }
 
 .navbar {
@@ -260,9 +272,10 @@ body, html {
     letter-spacing: -2px;
     line-height: 0.8;
     position:relative;
-    left: -10%;
+    left: -5%;
     top: -7vw;
     z-index: 1;
+    gap: -30px;
     pointer-events: none;
     padding-bottom:20px ;
   }
@@ -301,6 +314,7 @@ body, html {
     position: relative;
 }
 
+
 .section.about {
     position: relative;
     height: 100vh;
@@ -330,7 +344,7 @@ body, html {
     font-weight: bold;
     color: rgba(137, 136, 136, 0.381);
     white-space: nowrap;
-    animation: fall 240s linear infinite;
+    animation: moveBackAndForth 140s linear infinite;
     
 }
 
@@ -338,13 +352,15 @@ body, html {
     transform: scale(1.2);
     letter-spacing: 0.5vw;
     color: #ccc;
+    cursor:default;
+
 
   }
 
 .about-text {
     position: absolute;
     top: 50%;
-    left: 17vw;
+    left: 18vw;
     transform: translateY(-50%);
     max-width: 400px;
     z-index: 9999;
@@ -377,67 +393,87 @@ body, html {
 .modal {
     display: none;
     position: fixed;
-    inset: 0;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: flex;
+    background: rgba(0, 0, 0, 0.8);
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    padding: 2rem;
+   
+    
 }
 
 .modal-content {
-    background-color: #fff;
-    border-radius: 12px;
+    background: white;
     padding: 20px;
+    
     max-width: 90%;
-    max-height: 90vh;
-    overflow-y: auto; 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    color: #333;
+    max-height: 80%;
+    overflow-y: auto;
+    animation: zoomIn 0.4s ease forwards;
 }
+
+.modal-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+  
+  @keyframes zoomIn {
+    to {
+      transform: scale(0.92);
+      opacity: 1;
+    }
+  }
+
 
 .close {
     position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #333;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #555;
     cursor: pointer;
-    transition: transform 0.2s;
+    background: #eee;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 
 }
 
 .close:hover {
-    transform: rotate(90deg);
-    color: #e74c3c;
+    background: #e74c3c;
+    color: white;
   }
 
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    column-count: 3;
     gap: 20px;
+    position: relative;
 }
- 
+
     .gallery img:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   }
 
 .nature-image {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 16px;
+    margin-bottom: 20px;
+    
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    break-inside: avoid;
 }
 
 .about-text a {
@@ -462,13 +498,35 @@ body, html {
 }
 
 .section.gallery {
-    background-image: url(img/suminagashiGPT.png);
-    width: 120%;
-    background-size: cover;
-    background-position: center ;
-    color: #000;
-    box-sizing: border-box;
-    border-bottom: none !important;
+    
+    position: relative;
+    height: 100%;
+    
+    
+}
+
+#projects {
+  position: relative;
+  overflow: hidden;
+
+}
+
+#fluid-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+}
+
+.projects-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  color: black
+  
 }
 
 .navbar.white {
@@ -567,6 +625,4 @@ body, html {
         bottom: 50px;
     }
 }
-
-  
 
